@@ -10,7 +10,7 @@ use threads;
 # ソフトウェアを定義
 ### 編集範囲 開始 ###
 my $software = "divgraph.pl";	# ソフトウェアの名前
-my $version = "ver.1.0.0";	# ソフトウェアのバージョン
+my $version = "ver.1.0.1";	# ソフトウェアのバージョン
 my $note = "Divide a weighted graph into communities by using greedy method under specified conditions.";	# ソフトウェアの説明
 my $usage = "<STDIN|edge1.tsv> [edge2.tsv ...] [>cluster.tsv]";	# ソフトウェアの使用法 (コマンド非使用ソフトウェアの時に有効)
 ### 編集範囲 終了 ###
@@ -58,7 +58,7 @@ foreach (@option_list) {
 use threads::shared;
 use Thread::Queue 3.07;
 use Inline (CPP => Config => CC => exists($ENV{"CXX"}) ? $ENV{"CXX"} : 'c++', CCFLAGS => '-std=c++14 -march=native', DIRECTORY => $ENV{"DIVGRAPH_INLINE_DIR"});
-use Inline (CPP => 'DATA', NAME => 'DIVGRAPH', AUTO_INCLUDE => ['#undef seed', '#include <vector>', '#include <unordered_map>', '#include <random>', '#include <numeric>']);
+use Inline (CPP => 'DATA', NAME => 'DIVGRAPH', AUTO_INCLUDE => ['#undef seed', '#include <vector>', '#include <unordered_map>', '#include <random>', '#include <algorithm>']);
 no warnings 'portable';
 
 # 定数を定義
